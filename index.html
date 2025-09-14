@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Voice Home Automation Simulator</title>
+  <link rel="stylesheet" href="assets/style.css"/>
+</head>
+<body>
+  <header>
+    <h1><span class="logo"></span> Voice-Activated Home Automation <span class="muted">— Simulator</span></h1>
+    <div class="status-bar">
+      <div id="profileArea">
+        <label for="langSelect">Language:</label>
+        <select id="langSelect">
+          <option value="en-US">English (US)</option>
+          <option value="en-IN">English (India)</option>
+          <option value="en-GB">English (UK)</option>
+          <option value="hi-IN">Hindi (India)</option>
+          <option value="es-US">Spanish (US)</option>
+        </select>
+        <label for="profileSelect">Profile:</label>
+        <select id="profileSelect"></select>
+        <button id="addProfileBtn" title="Add profile">＋</button>
+        <button id="deleteProfileBtn" title="Delete profile">🗑</button>
+      </div>
+      <div class="toolbar">  <button id="themeToggle" class="ghost" title="Toggle theme">🌓 Theme</button>  <div class="accent-picker" title="Accent colors">    <button class="swatch" data-accent="blue" aria-label="Blue"></button>    <button class="swatch" data-accent="purple" aria-label="Purple"></button>    <button class="swatch" data-accent="green" aria-label="Green"></button>    <button class="swatch" data-accent="orange" aria-label="Orange"></button>    <button class="swatch" data-accent="pink" aria-label="Pink"></button>  </div></div><div class="mic-controls">
+        <label class="small"><input type="checkbox" id="pttToggle"> Push-to-Talk</label>
+        <button id="micBtn" class="mic">🎤 Start</button>
+        <div id="micMeter" class="meter" title="Input level"><div class="bar"></div></div><span id="micStatus" class="pill">idle</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="controls">
+      <div class="input-group">
+        <input id="commandInput" type="text" placeholder='Try: "Turn on the living room lights" or "Wake me up at 7:00 am and set bedroom lights to 50%"'>
+        <button id="sendBtn">Send</button>
+      </div>
+      <div class="quick-examples">
+        <button class="example">Turn off the bedroom lights</button>
+        <button class="example">Dim the living room lights to 40%</button>
+        <button class="example">Set the thermostat to 72 degrees</button>
+        <button class="example">What's the current temperature?</button>
+        <button class="example">Start the coffee maker</button>
+        <button class="example">Is the washing machine finished?</button>
+        <button class="example">Wake me up at 7:00 am and turn on the bedroom lights to 50%</button>
+      </div>
+    </section>
+
+    <section class="dashboard">
+      <h2>Home Devices</h2>
+      <div id="devicesGrid" class="grid"></div>
+    </section>
+
+    <section class="log-section">
+      <h2>Conversation & Feedback</h2>
+      <div id="log"></div>
+    </section>
+
+    <section class="schedule-section">
+      <h2>Scheduled Routines</h2>
+      <div id="scheduleList"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Client-side demo using Web Speech API (when available). No servers or external APIs required.</p>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/devices.js"></script>
+  <script src="js/nlp.js"></script>
+  <script src="js/scheduler.js"></script>
+  <script src="js/tts.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

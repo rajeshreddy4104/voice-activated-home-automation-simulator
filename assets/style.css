@@ -1,0 +1,122 @@
+
+/* ====== Global Theme & Accents ====== */
+:root{
+  --bg:#0c0f14; --bg2:rgba(255,255,255,0.03);
+  --panel:#0f1522; --panel-2:#121a2b; --border:#22304a;
+  --text:#e9ecf2; --muted:#a7b0c4;
+  --glass:rgba(255,255,255,0.06);
+  --shadow:0 6px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,0.02);
+  --radius:16px;
+  /* Default accent = blue */
+  --accent:#6ea8fe; --accent-2:#c0d7ff;
+  --grad1:#1b4eff; --grad2:#6ea8fe;
+}
+:root.light{
+  --bg:#f7f9ff; --bg2:rgba(0,0,0,0.03);
+  --panel:#ffffff; --panel-2:#f1f5ff; --border:#d9e3ff;
+  --text:#0d1220; --muted:#5b6477;
+  --glass:rgba(255,255,255,0.65);
+  --shadow:0 8px 30px rgba(37, 60, 155, .08), inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+/* Accent variants */
+:root[data-accent="blue"]  { --accent:#6ea8fe; --accent-2:#c0d7ff; --grad1:#1b4eff; --grad2:#6ea8fe; }
+:root[data-accent="purple"]{ --accent:#b693ff; --accent-2:#e2d4ff; --grad1:#6a00ff; --grad2:#b693ff; }
+:root[data-accent="green"] { --accent:#49d2a7; --accent-2:#c8f6e9; --grad1:#00b57a; --grad2:#49d2a7; }
+:root[data-accent="orange"]{ --accent:#ffb25e; --accent-2:#ffe1bf; --grad1:#ff7a18; --grad2:#ffb25e; }
+:root[data-accent="pink"]  { --accent:#ff8bd1; --accent-2:#ffd0ef; --grad1:#ff2aa1; --grad2:#ff8bd1; }
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text)}
+
+/* ====== Header ====== */
+header{
+  padding:18px 22px;
+  border-bottom:1px solid var(--border);
+  backdrop-filter:saturate(130%) blur(6px);
+  background:linear-gradient(180deg,var(--bg2),transparent);
+  position:sticky; top:0; z-index:10;
+}
+h1{margin:0;font-size:clamp(18px,2vw,28px);display:flex;align-items:center;gap:10px}
+h1 .logo{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--grad1),var(--grad2));box-shadow:0 6px 24px rgba(0,0,0,.25)}
+
+.muted{color:var(--muted);font-weight:500}
+.status-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+#profileArea{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+label{color:var(--muted)}
+select,input[type=text]{background:var(--panel-2);border:1px solid var(--border);color:var(--text);padding:12px 14px;border-radius:12px;box-shadow:var(--shadow)}
+
+button{
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  color:var(--text);
+  padding:12px 14px;
+  border-radius:12px;
+  cursor:pointer;
+  transition:.2s transform,.2s background,.2s box-shadow;
+  box-shadow:var(--shadow);
+}
+button:hover{background:var(--panel);transform:translateY(-1px)}
+button.ghost{background:transparent;box-shadow:none}
+button.mic{font-weight:700}
+
+/* Toolbar & Accent picker */
+.toolbar{display:flex;gap:10px;align-items:center}
+.accent-picker{display:flex;gap:8px}
+.swatch{
+  width:22px;height:22px;border-radius:999px;border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  background: var(--panel-2);
+  position:relative; overflow:hidden;
+}
+.swatch[data-accent="blue"]  { background:linear-gradient(135deg,#1b4eff,#6ea8fe); }
+.swatch[data-accent="purple"]{ background:linear-gradient(135deg,#6a00ff,#b693ff); }
+.swatch[data-accent="green"] { background:linear-gradient(135deg,#00b57a,#49d2a7); }
+.swatch[data-accent="orange"]{ background:linear-gradient(135deg,#ff7a18,#ffb25e); }
+.swatch[data-accent="pink"]  { background:linear-gradient(135deg,#ff2aa1,#ff8bd1); }
+
+.pill{padding:8px 12px;background:var(--panel-2);border:1px solid var(--border);border-radius:999px;font-size:12px;color:var(--muted)}
+
+/* ====== Main ====== */
+main{padding:24px;display:flex;flex-direction:column;gap:28px;max-width:1200px;margin:0 auto}
+.controls .input-group{display:flex;gap:10px}
+.controls input#commandInput{flex:1;font-size:16px}
+.quick-examples{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+.quick-examples button{font-size:14px}
+
+/* ====== Cards ====== */
+.dashboard h2,.log-section h2,.schedule-section h2{color:var(--text);opacity:.9;margin:0 0 12px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.card{
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  padding:16px;
+  display:flex;flex-direction:column;gap:12px;
+  box-shadow:var(--shadow);
+  transition:.2s transform, .2s box-shadow;
+}
+.card:hover{transform:translateY(-2px)}
+
+.card h3{margin:0;color:var(--text);display:flex;align-items:center;gap:10px}
+.card h3 .emoji{font-size:18px}
+.badge{font-size:12px;padding:4px 10px;border-radius:999px;border:1px solid var(--border);background:var(--bg2);color:var(--muted)}
+
+.control-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.slider{width:100%;accent-color:var(--accent)}
+
+/* ====== Log & Schedule ====== */
+#log{display:flex;flex-direction:column-reverse;gap:10px;min-height:140px;border:1px solid var(--border);border-radius:var(--radius);padding:14px;background:var(--panel);box-shadow:var(--shadow)}
+.log-item{display:flex;gap:12px;align-items:flex-start}
+.log-item .who{width:80px;color:var(--muted);font-size:12px;text-align:right}
+.log-item .msg{white-space:pre-wrap}
+
+.schedule-item{border:1px dashed var(--border);padding:12px;border-radius:14px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--panel);box-shadow:var(--shadow)}
+
+.small{font-size:12px;color:var(--muted)}
+footer{padding:12px 24px;border-top:1px solid var(--border);color:var(--muted);font-size:12px}
+
+/* ====== Mic meter ====== */
+.meter{width:140px;height:10px;border-radius:999px;border:1px solid var(--border);background:var(--panel-2)}
+.meter .bar{height:100%;width:6%;border-radius:999px;background:linear-gradient(90deg, var(--grad1), var(--grad2));transition:width .08s ease}
